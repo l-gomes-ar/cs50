@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Generate Password
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid mt-5 w-50">
+        <form action="/generate" method="post" autocomplete="off">
+            <div class="mb-3">
+                <label for="Account" class="form-label">Password for:</label>
+                <input type="text" class="form-control" id="Account" aria-describedby="accountHelp" name="account" required>
+                <div id="accountHelp" class="form-text">The account you want to generate a password for.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Email" class="form-label">E-mail or Username:</label>
+                <input type="text" class="form-control" id="Email" aria-describedby="emailHelp" name="email" required>
+                <div id="emailHelp" class="form-text">The e-mail or username you use to access the account above.</div>
+            </div>
+            <button type="submit" class="btn btn-dark">Generate Password</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lan="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- http://getbootstrap.com/docs/5.3/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        
+        <!--https://www.bing.com/images/create/icon-for-website-that-saves-passwords-in-black-and/64db9e3eb45148559cebb9a2bd1b2cb7?id=65NybRNqgSvzT1n%2bnIDJNQ%3d%3d&view=detailv2&idpp=genimg&idpclose=1&FORM=SYDBIC-->
+        <link href="/static/icon.png" rel="icon">
+        
+        <script>
+          function copyPassword(s) {
+  
+              // Copy text inside text field
+              navigator.clipboard.writeText(s);
+  
+              // Alert the copied text
+              alert('Copied!');
+          }
+        </script>
+
+        <title>
+            Password Manager: {% block title %}{% endblock %}
+        </title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/"> <img src="static/icon.png" alt="icon, small padlock" height="50"> Password Manager</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  {% if session["user_id"] %}
+                    <a class="nav-link" href="/generate">Generate new password</a>
+                    <a class="nav-link" href="/logout">Log Out</a>
+                  {% else %}
+                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/login">Log In</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-secondary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+          <main>
+            {% block main %}{% endblock %}
+          </main>
+    </body>
+</html>

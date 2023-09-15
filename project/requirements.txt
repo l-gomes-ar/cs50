@@ -1,0 +1,8 @@
+cs50
+flask
+flask-session
+functools
+html
+random
+string
+werkzeug

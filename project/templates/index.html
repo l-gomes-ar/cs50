@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="container-md py-5 text-center">
+        <table class="table table-secondary table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <td>Account</td>
+                    <td>E-mail or Username</td>
+                    <td>Password</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in info %}
+                    <tr>
+                        <td><b>{{ row.account }}</b></td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <!-- https://getbootstrap.com/docs/5.2/components/modal/ -->
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#{{ row.email }}">
+                                View
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="{{ row.email }}" tabindex="-1" aria-labelledby="Label{{ row.email }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="Label{{ row.email }}">{{ row.account }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ row.email }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark" id="ButtonFor{{ row.account }}" onclick="copyPassword('{{ row.email }}')">Copy E-mail or Username</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#{{ row.account }}">
+                                View
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="{{ row.account }}" tabindex="-1" aria-labelledby="Label{{ row.account }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="Label{{ row.account }}">{{ row.account }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ row.password }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-dark" id="ButtonFor{{ row.account }}" onclick="copyPassword('{{ row.password }}')">Copy Password</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <form action="/delete" method="post">
+                                <input type="hidden" value="{{ row.id }}" name="id">
+                                <button class="btn btn-secondary" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot class="table table-striped">
+                <tr>
+                    <td class="text-end" colspan="4">
+                        <form action="/delete_all">
+                        <button class="btn btn-dark" type="submit">Delete All</button>
+                        </form>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+First question:
+By running the SQL statement; SELECT AVG(energy), AVG(valence), AVG(danceability) FROM songs;
+I could get the following values:
++-------------+--------------+-------------------+
+| AVG(energy) | AVG(valence) | AVG(danceability) |
++-------------+--------------+-------------------+
+| 0.65906     | 0.484443     | 0.71646           |
++-------------+--------------+-------------------+
+I would say they like to dance, are rather energetic and a bit neutral moodwise because of the number for average valence.
+So, in this case, the aura would be a mixture of orange (high-energy), purple (danceability), and green (valence).
+
+Second question:
+It might not be very representative of the listener as I do not have a value for number of times the person listened to that song.
+It might be the case where the listener only listened to the song a few times compared to other, more meaningful ones.
+So even though this list comprises 100 most listened songs, it would be better to have the numbers for times listened each song, and have some sort of different
+weight for the top 10 most listened songs or genre.

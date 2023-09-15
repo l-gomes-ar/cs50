@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid mt-5 w-50">
+        <form action="/register" method="post" autocomplete="off">
+            <div class="mb-3">
+                <label for="Username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="Username" aria-describedby="usernameHelp" name="username" required>
+                <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password" name="password" required minlength="15">
+            </div>
+            <div class="mb-3">
+                <label for="Confirmation" class="form-label">Re-Type Password</label>
+                <input type="password" class="form-control" id="Confirmation" name="confirmation" required minlength="15">
+            </div>
+            <p>Password must be at least 15 characters long and contain lower and upper case letters, digits, and punctuation!</p>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+{% endblock %}

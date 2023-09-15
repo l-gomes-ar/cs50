@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: In the best case scenario (sorted), it takes n steps to check if the list is sorted, as there will be no swaps, which makes it run faster than selection sort and merge sort.
+
+sort2 uses: Merge Sort
+
+How do you know?: This programs runs considerably faster when sorting bigger random lists when compared to sort1 and sort3.
+
+sort3 uses: Selection Sort
+
+How do you know?: Because we have to iterate over each of the n elements of the array n times no matter the case, the time to run this for lists of the same size is pretty much the same.
